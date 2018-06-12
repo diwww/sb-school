@@ -1,0 +1,3 @@
+[submodule "project/sales-app"]
+	path = project/sales-app
+	url = https://github.com/diwww/sales-app.git
