@@ -3,6 +3,7 @@ package ru.gcsales.seminar4;
 import android.app.IntentService;
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.content.LocalBroadcastManager;
 
 public class MyIntentService extends IntentService {
     private StateManager stateManager = StateManager.getInstance();
@@ -22,10 +23,9 @@ public class MyIntentService extends IntentService {
         Intent broadcastIntent = new Intent(Constants.FILTER);
         // Add new state extra to intent
         broadcastIntent.putExtra(Constants.STATE_EXTRA, stateManager.getState().toString());
-        broadcastIntent.addFlags(Intent.FLAG_INCLUDE_STOPPED_PACKAGES);
         // TODO: why does not work with permissions?
         // Broadcast intent
-        sendOrderedBroadcast(broadcastIntent, null);
+        LocalBroadcastManager.getInstance(this).sendBroadcast(broadcastIntent);
     }
 
     public static Intent newIntent(Context context, int num) {

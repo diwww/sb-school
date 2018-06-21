@@ -1,6 +1,7 @@
 package ru.gcsales.seminar4;
 
 import android.content.IntentFilter;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -48,12 +49,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        registerReceiver(mReceiver, mFilter);
+        LocalBroadcastManager.getInstance(this).registerReceiver(mReceiver, mFilter);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        unregisterReceiver(mReceiver);
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(mReceiver);
     }
 }

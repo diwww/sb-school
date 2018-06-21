@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="ru.gcsales.seminar4">
-
+    package="ru.gcsales.seminar6">
 
     <application
         android:allowBackup="true"
@@ -19,8 +18,17 @@
         </activity>
 
         <service
-            android:name=".MyIntentService"
-            android:exported="false" />
+            android:name=".services.FirstService"
+            android:enabled="true"
+            android:exported="true" />
+        <service
+            android:name=".services.ThirdService"
+            android:enabled="true"
+            android:exported="true" />
+        <service
+            android:name=".services.FourthService"
+            android:enabled="true"
+            android:exported="true"></service>
     </application>
 
 </manifest>
