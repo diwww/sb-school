@@ -1,5 +1,6 @@
 package ru.gcsales.seminar13.loaders;
 
+import android.arch.persistence.room.Room;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -15,6 +16,8 @@ import java.util.concurrent.TimeUnit;
 
 import ru.gcsales.seminar13.api.ApiMapper;
 import ru.gcsales.seminar13.api.RetrofitHelper;
+import ru.gcsales.seminar13.database.DayEntity;
+import ru.gcsales.seminar13.database.WeatherDatabase;
 import ru.gcsales.seminar13.models.BaseItem;
 import ru.gcsales.seminar13.models.DayItem;
 import ru.gcsales.seminar13.webmodels.DailyData;
@@ -22,13 +25,16 @@ import ru.gcsales.seminar13.webmodels.Forecast;
 
 public class WeekForecastLoader extends AsyncTaskLoader<List<BaseItem>> {
 
-    private static final String TAG = "WebDataLoader";
+    private static final String TAG = "WeekForecastLoader";
 
     private Bundle mArgs;
+    private WeatherDatabase mWeatherDatabase;
 
     public WeekForecastLoader(@NonNull Context context, Bundle args) {
         super(context);
         this.mArgs = args;
+        mWeatherDatabase = Room.databaseBuilder(context, WeatherDatabase.class, "weather")
+                .build();
     }
 
     @Nullable
@@ -41,16 +47,29 @@ public class WeekForecastLoader extends AsyncTaskLoader<List<BaseItem>> {
             // Transform raw data to models
             List<BaseItem> dayItems = new ArrayList<>();
             for (DailyData d : dailyData) {
+                // Convert to model
                 DayItem dayItem = new DayItem(d.getTemperatureMax(), d.getTemperatureMin(),
                         new Date(TimeUnit.SECONDS.toMillis(d.getTime())), d.getIcon(),
                         d.getSummary());
                 dayItems.add(dayItem);
+                // Convert to entity
+                DayEntity dayEntity = new DayEntity(d.getTime(), d.getTemperatureMax(),
+                        d.getTemperatureMin(), d.getIcon(), d.getSummary());
+                mWeatherDatabase.getDayDao().insert(dayEntity);
             }
             // Return transformed data
             return dayItems;
         } catch (IOException e) {
             Log.e(TAG, "loadInBackground: " + e.getMessage());
+            List<BaseItem> dayItems = new ArrayList<>();
+            List<DayEntity> list = mWeatherDatabase.getDayDao().getDays(TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis()));
+            for (DayEntity dayEntity : list) {
+                DayItem dayItem = new DayItem(dayEntity.getMaxTemp(), dayEntity.getMinTemp(),
+                        new Date(TimeUnit.SECONDS.toMillis(dayEntity.getTimeStamp())),
+                        dayEntity.getIconName(), dayEntity.getSummary());
+                dayItems.add(dayItem);
+            }
+            return dayItems;
         }
-        return null;
     }
 }
