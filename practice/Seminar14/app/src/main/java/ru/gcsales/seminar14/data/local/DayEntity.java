@@ -10,19 +10,22 @@ public class DayEntity {
     @PrimaryKey
     @ColumnInfo(name = "time_stamp")
     private long mTimeStamp;
-    @ColumnInfo(name = "max_temp")
-    private double mMaxTemp;
-    @ColumnInfo(name = "min_temp")
-    private double mMinTemp;
+    @ColumnInfo(name = "high_temp")
+    private double mHighTemp;
+    @ColumnInfo(name = "low_temp")
+    private double mLowTemp;
     @ColumnInfo(name = "icon_name")
     private String mIconName;
     @ColumnInfo(name = "summary")
     private String mSummary;
 
-    public DayEntity(long timeStamp, double maxTemp, double minTemp, String iconName, String summary) {
+    public DayEntity() {
+    }
+
+    public DayEntity(long timeStamp, double highTemp, double lowTemp, String iconName, String summary) {
         mTimeStamp = timeStamp;
-        mMaxTemp = maxTemp;
-        mMinTemp = minTemp;
+        mHighTemp = highTemp;
+        mLowTemp = lowTemp;
         mIconName = iconName;
         mSummary = summary;
     }
@@ -35,20 +38,20 @@ public class DayEntity {
         mTimeStamp = timeStamp;
     }
 
-    public double getMaxTemp() {
-        return mMaxTemp;
+    public double getHighTemp() {
+        return mHighTemp;
     }
 
-    public void setMaxTemp(double maxTemp) {
-        mMaxTemp = maxTemp;
+    public void setHighTemp(double highTemp) {
+        mHighTemp = highTemp;
     }
 
-    public double getMinTemp() {
-        return mMinTemp;
+    public double getLowTemp() {
+        return mLowTemp;
     }
 
-    public void setMinTemp(double minTemp) {
-        mMinTemp = minTemp;
+    public void setLowTemp(double lowTemp) {
+        mLowTemp = lowTemp;
     }
 
     public String getIconName() {

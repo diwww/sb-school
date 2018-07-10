@@ -24,6 +24,9 @@ public class HourEntity {
     @ColumnInfo(name = "icon_name")
     private String mIcon;
 
+    public HourEntity() {
+    }
+
     public HourEntity(long timeStamp, double temp, String summary, double humidity, double windSpeed, double pressure, String icon) {
         mTimeStamp = timeStamp;
         mTemp = temp;
