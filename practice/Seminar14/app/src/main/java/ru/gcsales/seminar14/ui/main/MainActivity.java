@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.widget.ProgressBar;
 
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 import ru.gcsales.seminar14.R;
 import ru.gcsales.seminar14.data.model.DailyData;
@@ -22,6 +23,7 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        startActivity(DayActivity.newIntent(this, TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis())));
     }
 
     private void init() {

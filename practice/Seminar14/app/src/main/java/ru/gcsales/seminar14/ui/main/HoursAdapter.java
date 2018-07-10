@@ -57,6 +57,11 @@ public class HoursAdapter extends RecyclerView.Adapter<HoursAdapter.HourViewHold
         return mData.size();
     }
 
+    public void setData(List<HourlyData> data) {
+        mData = data;
+        notifyDataSetChanged();
+    }
+
     public static class HourViewHolder extends RecyclerView.ViewHolder {
 
         TextView timeTextView;
