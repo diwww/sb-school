@@ -1,4 +1,4 @@
-package ru.gcsales.seminar14.ui.main;
+package ru.gcsales.seminar14.ui.day;
 
 import android.os.AsyncTask;
 

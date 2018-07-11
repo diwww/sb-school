@@ -2,6 +2,9 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 27
+    dataBinding {
+        enabled = true
+    }
     defaultConfig {
         applicationId "ru.gcsales.seminar14"
         minSdkVersion 21

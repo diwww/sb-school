@@ -1,4 +1,4 @@
-package ru.gcsales.seminar14.ui.main;
+package ru.gcsales.seminar14.ui.day;
 
 import android.arch.persistence.room.Room;
 import android.content.Context;
@@ -20,6 +20,8 @@ import ru.gcsales.seminar14.data.local.ForecastDatabase;
 import ru.gcsales.seminar14.data.model.HourlyData;
 import ru.gcsales.seminar14.data.remote.ForecastService;
 import ru.gcsales.seminar14.ui.base.BaseActivity;
+import ru.gcsales.seminar14.util.DataManagerProvider;
+import ru.gcsales.seminar14.util.MyApplication;
 
 public class DayActivity extends BaseActivity implements DayMvpView {
 
@@ -47,7 +49,7 @@ public class DayActivity extends BaseActivity implements DayMvpView {
                 .build();
         DataManager dataManager = new DataManager(service, database);
 
-        mDayPresenter = new DayPresenter(dataManager);
+        mDayPresenter = new DayPresenter(((DataManagerProvider) getApplication()).getDataManager());
         mDayPresenter.attachView(this);
         mDayPresenter.loadHourlyData(getIntent().getLongExtra(TIME_EXTRA, 0));
 

@@ -1,8 +1,16 @@
 
 package ru.gcsales.seminar14.data.model;
 
+import android.databinding.BindingAdapter;
+import android.widget.ImageView;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+
+import java.util.Locale;
+import java.util.concurrent.TimeUnit;
+
+import ru.gcsales.seminar14.util.Config;
 
 public class DailyData {
 
@@ -124,8 +132,18 @@ public class DailyData {
     @Expose
     private long apparentTemperatureMaxTime;
 
+    @BindingAdapter("imageIcon")
+    public static void setImageIcon(ImageView imageView, String imageIcon) {
+        imageView.setImageResource(Config.ICON_DRAWABLE_MAP.get(imageIcon));
+    }
+
     public long getTime() {
         return time;
+    }
+
+    public String getTimeString() {
+        return String.format(Locale.getDefault(),
+                "%1$ta, %1$td %1$tb", TimeUnit.SECONDS.toMillis(getTime()));
     }
 
     public void setTime(long time) {
@@ -216,6 +234,10 @@ public class DailyData {
         return temperatureHigh;
     }
 
+    public String getTemperatureHighString() {
+        return String.format(Locale.getDefault(), "%2.0f\u2103", temperatureHigh);
+    }
+
     public void setTemperatureHigh(double temperatureHigh) {
         this.temperatureHigh = temperatureHigh;
     }
@@ -230,6 +252,11 @@ public class DailyData {
 
     public double getTemperatureLow() {
         return temperatureLow;
+    }
+
+
+    public String getTemperatureLowString() {
+        return String.format(Locale.getDefault(), "%2.0f\u2103", temperatureLow);
     }
 
     public void setTemperatureLow(double temperatureLow) {

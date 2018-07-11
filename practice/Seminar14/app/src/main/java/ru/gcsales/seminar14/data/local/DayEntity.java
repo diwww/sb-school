@@ -2,6 +2,7 @@ package ru.gcsales.seminar14.data.local;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 
 @Entity(tableName = "day")
@@ -22,6 +23,7 @@ public class DayEntity {
     public DayEntity() {
     }
 
+    @Ignore
     public DayEntity(long timeStamp, double highTemp, double lowTemp, String iconName, String summary) {
         mTimeStamp = timeStamp;
         mHighTemp = highTemp;
