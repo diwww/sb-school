@@ -21,6 +21,11 @@ public class GetWeeklyForecast extends UseCase {
 
     @Override
     public void run() {
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         final List<Day> data = mRepository.getWeekly();
         getMainThread().post(new Runnable() {
             @Override
