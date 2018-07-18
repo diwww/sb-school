@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">EspressoTest</string>
+    <string name="fio">ФИО</string>
+    <string name="add">Добавить</string>
+    <string name="all_fio">все фио</string>
+    <string name="defaultt">Default</string>
+</resources>
