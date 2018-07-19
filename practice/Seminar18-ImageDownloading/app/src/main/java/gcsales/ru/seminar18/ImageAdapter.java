@@ -26,6 +26,7 @@ public class ImageAdapter extends RecyclerView.Adapter {
         mFactorySparseArray.put(ImageType.PICASSO.type, new PicassoViewHolderFactory());
         mFactorySparseArray.put(ImageType.GLIDE.type, new GlideViewHolderFactory());
         mFactorySparseArray.put(ImageType.FRESCO.type, new FrescoViewHolderFactory());
+        mFactorySparseArray.put(ImageType.HTTP.type, new HttpViewHolderFactory());
     }
 
     @NonNull
@@ -63,6 +64,9 @@ public class ImageAdapter extends RecyclerView.Adapter {
                 case 2:
                     mBinderList.add(new FrescoViewHolderBinder(urls.get(i)));
                     break;
+                case 3:
+                    mBinderList.add(new HttpViewHolderBinder(urls.get(i)));
+                    break;
                 default:
                     break;
             }
@@ -70,7 +74,7 @@ public class ImageAdapter extends RecyclerView.Adapter {
     }
 
     public enum ImageType {
-        PICASSO(0), GLIDE(1), FRESCO(2);
+        PICASSO(0), GLIDE(1), FRESCO(2), HTTP(3);
 
         final int type;
 
@@ -104,6 +108,16 @@ public class ImageAdapter extends RecyclerView.Adapter {
         ImageView mImageView;
 
         public GlideViewHolder(View itemView) {
+            super(itemView);
+            mImageView = itemView.findViewById(R.id.image_view);
+        }
+    }
+
+    public static class HttpViewHolder extends RecyclerView.ViewHolder {
+
+        ImageView mImageView;
+
+        public HttpViewHolder(View itemView) {
             super(itemView);
             mImageView = itemView.findViewById(R.id.image_view);
         }

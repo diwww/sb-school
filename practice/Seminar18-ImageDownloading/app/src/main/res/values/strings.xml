@@ -3,4 +3,5 @@
     <string name="glide">Glide</string>
     <string name="picasso">Picasso</string>
     <string name="fresco">Fresco</string>
+    <string name="http">Http</string>
 </resources>
