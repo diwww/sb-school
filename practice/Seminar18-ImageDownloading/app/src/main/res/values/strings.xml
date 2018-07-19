@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Seminar18</string>
+    <string name="glide">Glide</string>
+    <string name="picasso">Picasso</string>
+    <string name="fresco">Fresco</string>
 </resources>
