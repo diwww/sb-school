@@ -5,10 +5,16 @@ import android.support.v7.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
 
+/**
+ * ViewHolderBinder для отображения картинок через либу Picasso
+ */
 public class PicassoViewHolderBinder extends ViewHolderBinder {
 
     private String mImageUrl;
 
+    /**
+     * @param imageUrl url картинки для загрузки
+     */
     public PicassoViewHolderBinder(String imageUrl) {
         mImageUrl = imageUrl;
     }

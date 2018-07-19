@@ -3,10 +3,16 @@ package gcsales.ru.seminar18;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 
+/**
+ * ViewHolderBinder для отображения картинок через либу Fresco
+ */
 public class FrescoViewHolderBinder extends ViewHolderBinder {
 
     private String mImageUrl;
 
+    /**
+     * @param imageUrl url картинки для загрузки
+     */
     public FrescoViewHolderBinder(String imageUrl) {
         mImageUrl = imageUrl;
     }

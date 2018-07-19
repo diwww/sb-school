@@ -3,7 +3,8 @@ package gcsales.ru.seminar18;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.os.AsyncTask;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.v7.widget.RecyclerView;
 
 import java.io.IOException;
@@ -11,10 +12,16 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+/**
+ * ViewHolderBinder для отображения картинок через http соединение
+ */
 public class HttpViewHolderBinder extends ViewHolderBinder {
 
     private String mImageUrl;
 
+    /**
+     * @param imageUrl url картинки для загрузки
+     */
     public HttpViewHolderBinder(String imageUrl) {
         mImageUrl = imageUrl;
     }
@@ -22,22 +29,22 @@ public class HttpViewHolderBinder extends ViewHolderBinder {
     @Override
     public void bindViewHolder(RecyclerView.ViewHolder viewHolder, Context context) {
         final ImageAdapter.HttpViewHolder httpViewHolder = (ImageAdapter.HttpViewHolder) viewHolder;
-        // FIXME:
-        new AsyncTask<String, Void, Bitmap>() {
+        // Set image placeholder
+        httpViewHolder.mImageView.setImageResource(R.drawable.ic_launcher_background);
 
+        final Handler handler = new Handler(Looper.getMainLooper());
+        new Thread(new Runnable() {
             @Override
-            protected Bitmap doInBackground(String... strings) {
-                if (strings.length > 0) {
-                    return getImage(strings[0]);
-                }
-                return null;
+            public void run() {
+                final Bitmap bitmap = getImage(mImageUrl);
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        httpViewHolder.mImageView.setImageBitmap(bitmap);
+                    }
+                });
             }
-
-            @Override
-            protected void onPostExecute(Bitmap bitmap) {
-                httpViewHolder.mImageView.setImageBitmap(bitmap);
-            }
-        }.execute(mImageUrl);
+        }).start();
     }
 
     @Override
@@ -45,8 +52,7 @@ public class HttpViewHolderBinder extends ViewHolderBinder {
         return ImageAdapter.ImageType.HTTP.type;
     }
 
-
-    private static Bitmap getImage(URL url) {
+    private Bitmap getImage(URL url) {
         HttpURLConnection connection = null;
         try {
             connection = (HttpURLConnection) url.openConnection();
@@ -67,7 +73,7 @@ public class HttpViewHolderBinder extends ViewHolderBinder {
         }
     }
 
-    private static Bitmap getImage(String urlString) {
+    private Bitmap getImage(String urlString) {
         try {
             URL url = new URL(urlString);
             return getImage(url);

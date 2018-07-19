@@ -29,7 +29,8 @@ public class MainActivity extends AppCompatActivity {
                 "https://sun1-20.userapi.com/c834203/v834203504/133992/KoV-d3r7Vyo.jpg",
                 "https://pp.userapi.com/c840329/v840329894/7a582/O7R3EMMkypU.jpg",
                 "https://pp.userapi.com/c844417/v844417273/2be55/kLGQCnZc6V0.jpg",
-                "https://pp.userapi.com/c824601/v824601288/e46b8/0FJQ6y2CaCU.jpg"
+                "https://pp.userapi.com/c824601/v824601288/e46b8/0FJQ6y2CaCU.jpg",
+                "https://pp.userapi.com/c836139/v836139168/359bb/sNnWJhJ69mc.jpg"
         ));
     }
 }

@@ -13,6 +13,9 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Адаптер для отображения картинок
+ */
 public class ImageAdapter extends RecyclerView.Adapter {
 
     private Context mContext;
@@ -50,6 +53,10 @@ public class ImageAdapter extends RecyclerView.Adapter {
         return mBinderList.get(position).getType();
     }
 
+    /**
+     * Загрузить и отобразить картинки в адаптере
+     * @param urls список ссылок на картинки
+     */
     public void setData(List<String> urls) {
         mBinderList.clear();
         for (int i = 0; i < urls.size(); i++) {
@@ -73,6 +80,9 @@ public class ImageAdapter extends RecyclerView.Adapter {
         }
     }
 
+    /**
+     * Тип ViewHolder'a для загрузки и отображения картинки
+     */
     public enum ImageType {
         PICASSO(0), GLIDE(1), FRESCO(2), HTTP(3);
 
@@ -83,6 +93,9 @@ public class ImageAdapter extends RecyclerView.Adapter {
         }
     }
 
+    /**
+     * Класс ViewHolder для Picasso
+     */
     public static class PicassoViewHolder extends RecyclerView.ViewHolder {
 
         ImageView mImageView;
@@ -93,6 +106,9 @@ public class ImageAdapter extends RecyclerView.Adapter {
         }
     }
 
+    /**
+     * Класс ViewHolder для Fresco
+     */
     public static class FrescoViewHolder extends RecyclerView.ViewHolder {
 
         SimpleDraweeView mImageView;
@@ -103,6 +119,9 @@ public class ImageAdapter extends RecyclerView.Adapter {
         }
     }
 
+    /**
+     * Класс ViewHolder для Glide
+     */
     public static class GlideViewHolder extends RecyclerView.ViewHolder {
 
         ImageView mImageView;
@@ -113,6 +132,9 @@ public class ImageAdapter extends RecyclerView.Adapter {
         }
     }
 
+    /**
+     * Класс ViewHolder для Http
+     */
     public static class HttpViewHolder extends RecyclerView.ViewHolder {
 
         ImageView mImageView;

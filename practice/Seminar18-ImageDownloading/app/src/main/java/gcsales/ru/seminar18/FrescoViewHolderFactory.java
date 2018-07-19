@@ -5,6 +5,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+/**
+ * Фабрика для создания ViewHolder'ов для картинок, загруженных через Fresco
+ */
 public class FrescoViewHolderFactory implements ViewHolderFactory {
     @Override
     public RecyclerView.ViewHolder createViewHolder(ViewGroup parent) {

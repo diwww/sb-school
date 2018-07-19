@@ -5,6 +5,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+
+/**
+ * Фабрика для создания ViewHolder'ов для картинок, загруженных через Picasso
+ */
 public class PicassoViewHolderFactory implements ViewHolderFactory {
     @Override
     public RecyclerView.ViewHolder createViewHolder(ViewGroup parent) {

@@ -6,10 +6,17 @@ import android.support.v7.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 
+
+/**
+ * ViewHolderBinder для отображения картинок через либу Glide
+ */
 public class GlideViewHolderBinder extends ViewHolderBinder {
 
     private String mImageUrl;
 
+    /**
+     * @param imageUrl url картинки для загрузки
+     */
     public GlideViewHolderBinder(String imageUrl) {
         mImageUrl = imageUrl;
     }
