@@ -1,11 +1,11 @@
-package gcsales.ru.seminar19.domain.model;
+package gcsales.ru.seminar19.presentation.model;
 
 import java.util.Date;
 
 /**
- * Класс для представления погоды за день в domain слое
+ * Класс представления погоды за день в presentation слое
  */
-public class Day {
+public class DayModel {
 
     private double mDayTemperature;
     private double mNightTemperature;
@@ -50,6 +50,6 @@ public class Day {
     }
 
     public void setDate(Date date) {
-        mDate = date;
+
     }
 }

@@ -1,11 +1,11 @@
-package gcsales.ru.seminar19.domain.model;
+package gcsales.ru.seminar19.presentation.model;
 
 import java.util.Date;
 
 /**
- * Класс для представления погоды за час в domain слое
+ * Класс для представления погоды за час в presentation слое
  */
-public class Hour {
+public class HourModel {
 
     private double mTemperature;
     private double mHumidity;
@@ -71,3 +71,4 @@ public class Hour {
         mDate = date;
     }
 }
+
