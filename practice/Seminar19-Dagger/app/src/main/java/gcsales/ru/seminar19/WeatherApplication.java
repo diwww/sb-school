@@ -4,7 +4,7 @@ import android.app.Application;
 
 import gcsales.ru.seminar19.injection.DaggerApplicationComponent;
 import gcsales.ru.seminar19.injection.ApplicationComponent;
-import gcsales.ru.seminar19.injection.ApplicationModule;
+import gcsales.ru.seminar19.injection.RepositoryMoudle;
 
 public class WeatherApplication extends Application {
 
@@ -14,7 +14,7 @@ public class WeatherApplication extends Application {
     public void onCreate() {
         super.onCreate();
         mApplicationComponent = DaggerApplicationComponent.builder()
-                .applicationModule(new ApplicationModule())
+                .repositoryMoudle(new RepositoryMoudle())
                 .build();
     }
 

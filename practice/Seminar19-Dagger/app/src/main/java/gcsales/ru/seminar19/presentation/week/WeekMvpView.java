@@ -8,4 +8,5 @@ import gcsales.ru.seminar19.presentation.model.DayModel;
 public interface WeekMvpView extends MvpView {
 
     void showData(List<DayModel> data);
+
 }

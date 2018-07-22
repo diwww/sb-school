@@ -20,5 +20,5 @@ public interface Repository {
      * Получить прогноз на день
      * @return список почасовых прогнозов
      */
-    List<Hour> getDaily();
+    List<Hour> getDaily(long time);
 }

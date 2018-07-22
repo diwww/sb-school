@@ -22,12 +22,6 @@ public class GetWeeklyForecast extends UseCase {
     @Override
     public void execute() {
         List<Day> data = mRepository.getWeekly();
-        // FIXME: remove
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         mCallback.onDataLoaded(data);
     }
 }

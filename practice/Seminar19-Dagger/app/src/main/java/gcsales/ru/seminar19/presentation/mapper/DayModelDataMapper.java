@@ -10,7 +10,7 @@ import gcsales.ru.seminar19.presentation.model.DayModel;
 /**
  * Маппер для DayModel
  */
-public class DayModelDataMapper implements DataMapper<Day, DayModel> {
+public class DayModelDataMapper {
 
     public DayModel transform(Day day) {
         DayModel dayModel = new DayModel();
@@ -23,7 +23,6 @@ public class DayModelDataMapper implements DataMapper<Day, DayModel> {
         return dayModel;
     }
 
-    @Override
     public List<DayModel> transform(List<Day> dayList) {
         List<DayModel> dayModelList;
 

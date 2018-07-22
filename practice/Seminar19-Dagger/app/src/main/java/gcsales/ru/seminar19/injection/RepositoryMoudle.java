@@ -3,8 +3,6 @@ package gcsales.ru.seminar19.injection;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 import javax.inject.Singleton;
 
@@ -13,11 +11,9 @@ import dagger.Provides;
 import gcsales.ru.seminar19.domain.model.Day;
 import gcsales.ru.seminar19.domain.model.Hour;
 import gcsales.ru.seminar19.domain.repository.Repository;
-import gcsales.ru.seminar19.presentation.UIThread;
-import gcsales.ru.seminar19.presentation.mapper.DayModelDataMapper;
 
 @Module
-public class ApplicationModule {
+public class RepositoryMoudle {
 
     @Provides
     @Singleton
@@ -34,31 +30,32 @@ public class ApplicationModule {
                 day.setSummary("Test");
 
                 list.add(day);
+                list.add(day);
+                list.add(day);
+                list.add(day);
+                list.add(day);
+                list.add(day);
+                list.add(day);
+                list.add(day);
+                list.add(day);
+                list.add(day);
                 return list;
             }
 
             @Override
-            public List<Hour> getDaily() {
-                return null;
+            public List<Hour> getDaily(long time) {
+                List<Hour> list = new ArrayList<>();
+
+                Hour hour = new Hour();
+                hour.setDate(new Date());
+                hour.setHumidity(24);
+                hour.setPressure(25);
+                hour.setSummary("Test");
+                hour.setWindSpeed(1000);
+                hour.setTemperature(33.33);
+                list.add(hour);
+                return list;
             }
         };
-    }
-
-    @Provides
-    @Singleton
-    public DayModelDataMapper provideDayModelDataMapper() {
-        return new DayModelDataMapper();
-    }
-
-    @Provides
-    @Singleton
-    public UIThread provideUIThread() {
-        return new UIThread();
-    }
-
-    @Provides
-    @Singleton
-    public ExecutorService provideExecutorService() {
-        return Executors.newFixedThreadPool(2);
     }
 }

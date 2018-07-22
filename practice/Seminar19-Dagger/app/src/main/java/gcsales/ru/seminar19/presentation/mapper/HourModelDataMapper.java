@@ -10,14 +10,20 @@ import gcsales.ru.seminar19.presentation.model.HourModel;
 /**
  * Маппер для HourModel
  */
-public class HourModelDataMapper implements DataMapper<Hour, HourModel> {
+public class HourModelDataMapper {
 
-    @Override
     public HourModel transform(Hour model) {
-        return null;
+        HourModel hourModel = new HourModel();
+        hourModel.setDate(model.getDate());
+        hourModel.setHumidity(model.getHumidity());
+        hourModel.setIcon(model.getIcon());
+        hourModel.setPressure(model.getPressure());
+        hourModel.setSummary(model.getSummary());
+        hourModel.setTemperature(model.getTemperature());
+        hourModel.setWindSpeed(model.getWindSpeed());
+        return hourModel;
     }
 
-    @Override
     public List<HourModel> transform(List<Hour> hourList) {
         List<HourModel> hourModelList;
 

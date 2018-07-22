@@ -11,17 +11,19 @@ import gcsales.ru.seminar19.domain.repository.Repository;
  */
 public class GetDailyForecast extends UseCase {
 
+    private long mTime;
     private Repository mRepository;
     private Callback<List<Hour>> mCallback;
 
-    public GetDailyForecast(Repository repository, Callback<List<Hour>> callback) {
+    public GetDailyForecast(long time, Repository repository, Callback<List<Hour>> callback) {
+        mTime = time;
         mRepository = repository;
         mCallback = callback;
     }
 
     @Override
     public void execute() {
-        List<Hour> data = mRepository.getDaily();
+        List<Hour> data = mRepository.getDaily(mTime);
         mCallback.onDataLoaded(data);
     }
 }

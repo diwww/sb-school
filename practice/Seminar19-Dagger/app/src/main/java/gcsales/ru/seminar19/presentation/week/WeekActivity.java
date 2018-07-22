@@ -2,7 +2,10 @@ package gcsales.ru.seminar19.presentation.week;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.Toast;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import java.util.List;
 
@@ -17,11 +20,16 @@ public class WeekActivity extends AppCompatActivity implements WeekMvpView {
     @Inject
     WeekPresenter mWeekPresenter;
 
+    private RecyclerView mRecyclerView;
+    private DaysAdapter mAdapter;
+    private ProgressBar mProgressBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_week);
         ((WeatherApplication) getApplication()).getApplicationComponent().inject(this);
+        initView();
     }
 
     @Override
@@ -39,7 +47,24 @@ public class WeekActivity extends AppCompatActivity implements WeekMvpView {
 
     @Override
     public void showData(List<DayModel> data) {
-        DayModel dayModel = data.get(0);
-        Toast.makeText(this, dayModel.getSummary(), Toast.LENGTH_LONG).show();
+        mAdapter.setData(data);
+    }
+
+    @Override
+    public void showProgress() {
+        mProgressBar.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideProgress() {
+        mProgressBar.setVisibility(View.GONE);
+    }
+
+    private void initView() {
+        mRecyclerView = findViewById(R.id.recycler_view_days);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(mRecyclerView.getContext()));
+        mAdapter = new DaysAdapter(this);
+        mRecyclerView.setAdapter(mAdapter);
+        mProgressBar = findViewById(R.id.progress_bar);
     }
 }

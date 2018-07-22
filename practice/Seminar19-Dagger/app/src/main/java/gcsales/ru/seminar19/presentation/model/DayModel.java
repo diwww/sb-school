@@ -50,6 +50,6 @@ public class DayModel {
     }
 
     public void setDate(Date date) {
-
+        mDate = date;
     }
 }
