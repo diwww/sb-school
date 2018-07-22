@@ -30,18 +30,15 @@ public class WeekActivity extends AppCompatActivity implements WeekMvpView {
         setContentView(R.layout.activity_week);
         ((WeatherApplication) getApplication()).getApplicationComponent().inject(this);
         initView();
-    }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
         mWeekPresenter.attachView(this);
         mWeekPresenter.getData();
     }
 
+
     @Override
-    protected void onPause() {
-        super.onPause();
+    protected void onDestroy() {
+        super.onDestroy();
         mWeekPresenter.detachView();
     }
 

@@ -34,4 +34,6 @@ dependencies {
     annotationProcessor "com.google.dagger:dagger-compiler:${DAGGER_VERSION}"
 
     implementation 'com.android.support:recyclerview-v7:27.1.1'
+    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
 }

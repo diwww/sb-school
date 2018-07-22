@@ -14,6 +14,7 @@ import java.util.Locale;
 
 import gcsales.ru.seminar19.R;
 import gcsales.ru.seminar19.presentation.model.HourModel;
+import gcsales.ru.seminar19.presentation.util.ImageIconMap;
 
 public class HoursAdapter extends RecyclerView.Adapter<HoursAdapter.HourViewHolder> {
 
@@ -40,10 +41,7 @@ public class HoursAdapter extends RecyclerView.Adapter<HoursAdapter.HourViewHold
         holder.tempTextView.setText(String.format(Locale.getDefault(),
                 "%.0f\u2103", hourModel.getTemperature()));
         holder.summaryTextView.setText(hourModel.getSummary());
-//        holder.iconImageView.setImageResource(Config.ICON_DRAWABLE_MAP.get(hourModel.getIcon()));
-        holder.iconImageView.setImageResource(R.drawable.ic_launcher_background);
-        // TODO: percent constant
-        // TODO: Move text to string resources
+        holder.iconImageView.setImageResource(ImageIconMap.getIconResource(hourModel.getIcon()));
         holder.humidityTextView.setText(String.format(Locale.getDefault(),
                 "Влажность: %.0f%%", hourModel.getHumidity() * 100));
         holder.windSpeedTextView.setText(String.format(Locale.getDefault(),

@@ -17,6 +17,7 @@ import java.util.concurrent.TimeUnit;
 import gcsales.ru.seminar19.R;
 import gcsales.ru.seminar19.presentation.day.DayActivity;
 import gcsales.ru.seminar19.presentation.model.DayModel;
+import gcsales.ru.seminar19.presentation.util.ImageIconMap;
 
 
 public class DaysAdapter extends RecyclerView.Adapter<DaysAdapter.DayViewHolder> {
@@ -40,15 +41,12 @@ public class DaysAdapter extends RecyclerView.Adapter<DaysAdapter.DayViewHolder>
     @Override
     public void onBindViewHolder(@NonNull DayViewHolder holder, int position) {
         final DayModel dayModel = mData.get(position);
-        holder.dayTempTextView.setText(String.format(Locale.getDefault(), "%.2f", dayModel.getDayTemperature()));
-        holder.nightTempTextView.setText(String.format(Locale.getDefault(), "%.2f", dayModel.getNightTemperature()));
+        holder.dayTempTextView.setText(String.format(Locale.getDefault(), "%.0f\u2103", dayModel.getDayTemperature()));
+        holder.nightTempTextView.setText(String.format(Locale.getDefault(), "%.0f\u2103", dayModel.getNightTemperature()));
         holder.summaryTextView.setText(dayModel.getSummary());
         holder.dateTextView.setText(String.format(Locale.getDefault(),
                 "%1$ta, %1$td %1$tb", dayModel.getDate()));
-
-        // TODO
-        holder.iconImageView.setImageResource(R.drawable.ic_launcher_background);
-
+        holder.iconImageView.setImageResource(ImageIconMap.getIconResource(dayModel.getIcon()));
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

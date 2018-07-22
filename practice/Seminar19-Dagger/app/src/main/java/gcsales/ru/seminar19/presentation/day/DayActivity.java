@@ -38,22 +38,17 @@ public class DayActivity extends AppCompatActivity implements DayMvpView {
         ((WeatherApplication) getApplication()).getApplicationComponent().inject(this);
         initView();
 
+        mDayPresenter.attachView(this);
+        mDayPresenter.getData(getIntent().getLongExtra(TIME_EXTRA, 0));
+
         long time = getIntent().getLongExtra(TIME_EXTRA, 0);
         setTitle(String.format(Locale.getDefault(), "%1$ta, %1$td %1$tb",
                 TimeUnit.SECONDS.toMillis(time)));
     }
 
-
     @Override
-    protected void onResume() {
-        super.onResume();
-        mDayPresenter.attachView(this);
-        mDayPresenter.getData(getIntent().getLongExtra(TIME_EXTRA, 0));
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
+    protected void onDestroy() {
+        super.onDestroy();
         mDayPresenter.detachView();
     }
 
