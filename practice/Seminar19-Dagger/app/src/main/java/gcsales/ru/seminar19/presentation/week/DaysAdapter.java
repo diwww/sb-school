@@ -23,12 +23,6 @@ import gcsales.ru.seminar19.presentation.util.ImageIconMap;
 public class DaysAdapter extends RecyclerView.Adapter<DaysAdapter.DayViewHolder> {
 
     private List<DayModel> mData = new ArrayList<>();
-    private Context mContext;
-
-    public DaysAdapter(Context context) {
-        mContext = context;
-    }
-
 
     @NonNull
     @Override
@@ -40,19 +34,8 @@ public class DaysAdapter extends RecyclerView.Adapter<DaysAdapter.DayViewHolder>
 
     @Override
     public void onBindViewHolder(@NonNull DayViewHolder holder, int position) {
-        final DayModel dayModel = mData.get(position);
-        holder.dayTempTextView.setText(String.format(Locale.getDefault(), "%.0f\u2103", dayModel.getDayTemperature()));
-        holder.nightTempTextView.setText(String.format(Locale.getDefault(), "%.0f\u2103", dayModel.getNightTemperature()));
-        holder.summaryTextView.setText(dayModel.getSummary());
-        holder.dateTextView.setText(String.format(Locale.getDefault(),
-                "%1$ta, %1$td %1$tb", dayModel.getDate()));
-        holder.iconImageView.setImageResource(ImageIconMap.getIconResource(dayModel.getIcon()));
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mContext.startActivity(DayActivity.newIntent(mContext, TimeUnit.MILLISECONDS.toSeconds(dayModel.getDate().getTime())));
-            }
-        });
+        DayModel dayModel = mData.get(position);
+        holder.bind(dayModel);
     }
 
     @Override
@@ -80,6 +63,23 @@ public class DaysAdapter extends RecyclerView.Adapter<DaysAdapter.DayViewHolder>
             iconImageView = itemView.findViewById(R.id.image_icon);
             dateTextView = itemView.findViewById(R.id.text_date);
             summaryTextView = itemView.findViewById(R.id.text_summary);
+        }
+
+        public void bind(final DayModel dayModel) {
+            dayTempTextView.setText(String.format(Locale.getDefault(), "%.0f\u2103", dayModel.getDayTemperature()));
+            nightTempTextView.setText(String.format(Locale.getDefault(), "%.0f\u2103", dayModel.getNightTemperature()));
+            summaryTextView.setText(dayModel.getSummary());
+            dateTextView.setText(String.format(Locale.getDefault(), "%1$ta, %1$td %1$tb", dayModel.getDate()));
+            iconImageView.setImageResource(ImageIconMap.getIconResource(dayModel.getIcon()));
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    long timeMillis = TimeUnit.MILLISECONDS.toSeconds(dayModel.getDate().getTime());
+                    Context context = v.getContext();
+                    context.startActivity(DayActivity.newIntent(context, timeMillis));
+                }
+            });
         }
     }
 }

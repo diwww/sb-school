@@ -60,7 +60,7 @@ public class WeekActivity extends AppCompatActivity implements WeekMvpView {
     private void initView() {
         mRecyclerView = findViewById(R.id.recycler_view_days);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mRecyclerView.getContext()));
-        mAdapter = new DaysAdapter(this);
+        mAdapter = new DaysAdapter();
         mRecyclerView.setAdapter(mAdapter);
         mProgressBar = findViewById(R.id.progress_bar);
     }
