@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/text_view_coords"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Coords: " />
+
+    <ru.gcsales.seminar22.MyCustomView
+        android:id="@+id/my_custom_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/darker_gray"
+        app:paint_color="@android:color/holo_blue_light"
+        app:rect_size_x="250"
+        app:rect_size_y="150" />
+
+</LinearLayout>

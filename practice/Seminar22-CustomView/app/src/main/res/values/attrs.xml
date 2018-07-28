@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="MyCustomView">
+        <attr name="paint_color" format="color" />
+        <attr name="rect_size_x" format="float" />
+        <attr name="rect_size_y" format="float" />
+
+    </declare-styleable>
+</resources>
