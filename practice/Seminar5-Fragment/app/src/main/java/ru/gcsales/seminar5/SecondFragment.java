@@ -36,6 +36,7 @@ public class SecondFragment extends Fragment {
                 SecondFragment.this.getChildFragmentManager()
                         .beginTransaction()
                         .replace(R.id.frame_layout, fragment)
+                        .addToBackStack(null)
                         .commit();
             }
         });
